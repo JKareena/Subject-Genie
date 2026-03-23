@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Subject Genie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Previous Background Color */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .landing-container {
+            max-width: 600px;
+            padding: 40px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .landing-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #002147; /* Previous Text Color */
+            margin-bottom: 10px;
+            text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .landing-description {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        .start-button {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #002147; /* Previous Button Color */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .start-button:hover {
+            background-color: #001733;
+            transform: scale(1.1);
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <div class="landing-title">Welcome to The Subject Genie</div>
+        <div class="landing-description">Get personalized guidance in choosing the best electives for your studies.</div>
+        <a href="chatbot.html" class="start-button">Start Chat</a>
+    </div>
+</body>
+</html>

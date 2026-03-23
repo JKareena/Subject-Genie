@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Subject Genie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Matching Landing Page */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .chat-container {
+            width: 400px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .chat-header {
+            background: #002147;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .chat-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-bubble {
+            max-width: 80%;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 15px;
+            display: inline-block;
+            animation: slideIn 0.3s ease-in-out;
+        }
+        .bot-message {
+            background: #002147;
+            color: white;
+            align-self: flex-start;
+        }
+        .user-message {
+            background: #ddd;
+            color: black;
+            align-self: flex-end;
+        }
+        .chat-footer {
+            padding: 10px;
+            display: flex;
+            border-top: 1px solid #ddd;
+            background: white;
+        }
+        .chat-input {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .send-button {
+            background: #002147;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .send-button:hover {
+            background: #001733;
+        }
+        .typing-indicator {
+            font-size: 14px;
+            color: #666;
+            margin: 5px auto;
+            display: none;
+            text-align: center;
+        }
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin: 0 2px;
+            background-color: #666;
+            border-radius: 50%;
+            animation: bounce 1.5s infinite;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">Subject Genie Chat</div>
+        <div class="chat-body" id="chat-body">
+            <div class="chat-bubble bot-message">Hello! How can I help you today?</div>
+        </div>
+        <div class="typing-indicator" id="typing-indicator">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="chat-footer">
+            <input type="text" class="chat-input" id="chat-input" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+            <button class="send-button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    
+    <script>
+        function sendMessage() {
+            const inputField = document.getElementById("chat-input");
+            const message = inputField.value.trim();
+            const chatBody = document.getElementById("chat-body");
+            const typingIndicator = document.getElementById("typing-indicator");
+            
+            if (message !== "") {
+                const userMessage = document.createElement("div");
+                userMessage.className = "chat-bubble user-message";
+                userMessage.textContent = message;
+                chatBody.appendChild(userMessage);
+                inputField.value = "";
+                chatBody.scrollTop = chatBody.scrollHeight;
+                
+                typingIndicator.style.display = "flex";
+                setTimeout(() => {
+                    typingIndicator.style.display = "none";
+                    const botMessage = document.createElement("div");
+                    botMessage.className = "chat-bubble bot-message";
+                    let response = "";
+const msg = message.toLowerCase();
+
+if (msg.includes("hello") || msg.includes("hi")) {
+    response = "Hi! 😊 What are your interests? (AI, data, web, coding)";
+}
+else if (msg.includes("ai") || msg.includes("machine learning")) {
+    response = "Great choice! 🤖 AI and Machine Learning are in high demand. Do you enjoy math or problem solving?";
+}
+else if (msg.includes("yes")) {
+    response = "Awesome! Then AI, ML, and Data Science would suit you well.";
+}
+else if (msg.includes("no")) {
+    response = "No worries! You can explore Web Development or UI/UX Design instead.";
+}
+else if (msg.includes("data")) {
+    response = "Nice! 📊 Data Science and Big Data Analytics are great options.";
+}
+else if (msg.includes("web") || msg.includes("design")) {
+    response = "Perfect! 🎨 You can go for Web Development or UI/UX Design.";
+}
+else if (msg.includes("coding") || msg.includes("programming")) {
+    response = "You might enjoy Data Structures, Algorithms, and Software Engineering!";
+}
+else {
+    response = "Tell me more about what you like (AI, data, web, coding) 😊";
+}
+
+botMessage.textContent = response;
+
+chatBody.appendChild(botMessage);
+chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1500);
+            }
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>
